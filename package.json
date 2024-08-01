@@ -6,6 +6,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "fmt": "npx prettier --write ."
   },
+  "bin": {
+    "@moeenn/tsinit": "./index.mjs"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

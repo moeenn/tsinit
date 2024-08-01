@@ -11,14 +11,18 @@ import {
   indexTsContent,
   indexTestTsContent,
 } from "./content.mjs";
+import { prompt, rl } from "./prompt.mjs"
 
 /**
  * script entry-point
  *
- * @param {string[]} args
  */
-async function main(args) {
-  const projectName = args[0] ?? "sandbox";
+async function main() {
+  let projectName = await prompt("Enter project name (default 'sandbox'): ")
+  if (!projectName.trim()) {
+    projectName = "sandbox"
+  }
+
   const currentDir = process.cwd()
   const projectPath = path.join(currentDir, projectName)
 
@@ -32,22 +36,22 @@ async function main(args) {
     {
       filename: "README.md",
       location: projectPath,
-      content: readmeMdContnt(projectName),
+      content: readmeMdContnt(projectName).trim(),
     },
     {
       filename: "package.json",
       location: projectPath,
-      content: JSON.stringify(packageJSONContent(projectName)),
+      content: JSON.stringify(packageJSONContent(projectName), null, 2),
     },
     {
       filename: ".swrrc",
       location: projectPath,
-      content: JSON.stringify(swrRcContent()),
+      content: JSON.stringify(swrRcContent(), null, 2),
     },
     {
       filename: "tsconfig.json",
       location: projectPath,
-      content: JSON.stringify(tsConfigJSONContent()),
+      content: JSON.stringify(tsConfigJSONContent(), null, 2),
     },
     {
       filename: "index.ts",
@@ -68,4 +72,6 @@ async function main(args) {
   }
 }
 
-main(process.argv.slice(2)).catch(console.error);
+main()
+    .then(() => rl.close())
+    .catch(console.error);

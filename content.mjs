@@ -141,7 +141,7 @@ export function swrRcContent() {
  * contents of the `tsconfig.json` file.
  *
  */
-function tsConfigJSONContent() {
+export function tsConfigJSONContent() {
   return {
     compilerOptions: {
       target: "es2020",
