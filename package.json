@@ -1,5 +1,5 @@
 {
-  "name": "@moeenn/tsinit",
+  "name": "moeenn-tsinit",
   "version": "1.0.0",
   "main": "index.mjs",
   "scripts": {
@@ -7,7 +7,7 @@
     "fmt": "npx prettier --write ."
   },
   "bin": {
-    "@moeenn/tsinit": "./index.mjs"
+    "moeenn-tsinit": "./index.mjs"
   },
   "keywords": [],
   "author": "",
