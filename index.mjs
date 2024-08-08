@@ -6,7 +6,7 @@ import fs from "node:fs"
 import {
   readmeMdContnt,
   packageJSONContent,
-  swrRcContent,
+  swcRcContent,
   tsConfigJSONContent,
   indexTsContent,
   indexTestTsContent,
@@ -44,9 +44,9 @@ async function main() {
       content: JSON.stringify(packageJSONContent(projectName), null, 2),
     },
     {
-      filename: ".swrrc",
+      filename: ".swcrc",
       location: projectPath,
-      content: JSON.stringify(swrRcContent(), null, 2),
+      content: JSON.stringify(swcRcContent(), null, 2),
     },
     {
       filename: "tsconfig.json",

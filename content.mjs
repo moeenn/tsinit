@@ -113,10 +113,10 @@ $ npm run test
 }
 
 /**
- * contents of the `.swrrc` file.
+ * contents of the `.swcrc` file.
  *
  */
-export function swrRcContent() {
+export function swcRcContent() {
   return {
     jsc: {
       parser: {
