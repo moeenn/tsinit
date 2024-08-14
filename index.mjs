@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import process from "node:process";
-import path from "node:path"
-import fs from "node:fs"
+import path from "node:path";
+import fs from "node:fs";
 import {
   readmeMdContnt,
   packageJSONContent,
@@ -11,25 +11,25 @@ import {
   indexTsContent,
   indexTestTsContent,
 } from "./content.mjs";
-import { prompt, rl } from "./prompt.mjs"
+import { prompt, rl } from "./prompt.mjs";
 
 /**
  * script entry-point
  *
  */
 async function main() {
-  let projectName = await prompt("Enter project name (default 'sandbox'): ")
+  let projectName = await prompt("Enter project name (default 'sandbox'): ");
   if (!projectName.trim()) {
-    projectName = "sandbox"
+    projectName = "sandbox";
   }
 
-  const currentDir = process.cwd()
-  const projectPath = path.join(currentDir, projectName)
+  const currentDir = process.cwd();
+  const projectPath = path.join(currentDir, projectName);
 
-  const projectDirExists = fs.existsSync(projectPath)
-  const srcDir = path.join(projectPath, "src")
+  const projectDirExists = fs.existsSync(projectPath);
+  const srcDir = path.join(projectPath, "src");
   if (!projectDirExists) {
-    fs.mkdirSync(srcDir, { recursive: true })
+    fs.mkdirSync(srcDir, { recursive: true });
   }
 
   const files = [
@@ -63,15 +63,15 @@ async function main() {
       location: srcDir,
       content: indexTestTsContent(),
     },
-  ]
+  ];
 
   for (const file of files) {
-    const filepath = path.join(file.location, file.filename)
-    console.log("Writing: ", filepath)
-    fs.writeFileSync(filepath, file.content, { encoding: "utf8"})
+    const filepath = path.join(file.location, file.filename);
+    console.log("Writing: ", filepath);
+    fs.writeFileSync(filepath, file.content, { encoding: "utf8" });
   }
 }
 
 main()
-    .then(() => rl.close())
-    .catch(console.error);
+  .then(() => rl.close())
+  .catch(console.error);
